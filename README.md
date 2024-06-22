@@ -86,6 +86,14 @@ For more information, refer to the [Beginner's Guide to ComfyUI](https://stabled
     make nvidia
     ```
 
+## Deployment Contexts
+
+This project has been successfully deployed and tested in the following contexts:
+
+| **Operating System**       | **CPU**   | **GPU**                | **Memory** |
+|----------------------------|-----------|------------------------|------------|
+| Ubuntu 22.04.4 LTS (amd64) | AMD 7700X | NVIDIA RTX 4090 (24GB) | 128GB DDR5 |
+
 ## Development
 
 To contribute to this project, follow these steps:
@@ -148,7 +156,7 @@ JMDOTS-DUAL-LICENSE-1.2
 https://legal.jmdots.com/licenses/
 
 Personal, Non-Commercial License
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This software is provided under the GNU Affero General Public License (AGPL)
 version 3 or later. You are free to use, modify, and distribute this
 software for personal, non-commercial use under the terms of the AGPL. If you
@@ -160,7 +168,7 @@ For more details, please refer to the full text of the GNU AGPL: [GNU Affero
 General Public License](http://www.gnu.org/licenses/)
 
 Commercial License
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 This software is available under a Commercial License for any business,
 commercial, enterprise, or governmental use. The Commercial License allows
 you to use, modify, and distribute this software in proprietary applications
@@ -173,7 +181,7 @@ For information on purchasing a commercial license, please contact us at
 GitHub](http://www.github.com/jmdots/).
 
 Limited Liability
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 In no event shall the authors or copyright holders be liable for any claim,
 damages, or other liability arising from the use or distribution of this
 software.

@@ -86,13 +86,36 @@ For more information, refer to the [Beginner's Guide to ComfyUI](https://stabled
     make nvidia
     ```
 
+## Customizing Your Model Paths
+
+(optional)
+
+**Note:** This feature is not related to ComfyUI Manage.
+
+The repository includes a default `extra_model_paths.example.yaml` file, which is copied into the container **image** as `extra_model_paths.yaml`. Since this file needs customization for different use cases, follow these steps to set up your own configuration:
+
+1. **Copy the Example File:**
+   ```bash
+   cp extra_model_paths.example.yaml extra_model_paths.yaml
+   ```
+   The `extra_model_paths.yaml` file is git-ignored to prevent it from being tracked by version control.
+
+2. **Customize the File:**
+   Edit the `extra_model_paths.yaml` file according to your specific requirements.
+
+3. **Mount the Customized File:**
+   To mount your customized `extra_model_paths.yaml` into the container, uncomment the line in `docker-compose.yaml` for mounting `./extra_models_paths.yaml` and `make restart`.
+
+**Note**: You may find the [Docker Compose override file pattern](https://devilbox.readthedocs.io/en/latest/configuration-files/docker-compose-override-yml.html) helpful if you use this feature.
+
 ## Deployment Contexts
 
 This project has been successfully deployed and tested in the following contexts:
 
-| **Operating System**       | **CPU**   | **GPU**                | **Memory** |
-|----------------------------|-----------|------------------------|------------|
-| Ubuntu 22.04.4 LTS (amd64) | AMD 7700X | NVIDIA RTX 4090 (24GB) | 128GB DDR5 |
+| **Operating System**       | **CPU**          | **GPU**                       | **Memory** |
+|----------------------------|------------------|-------------------------------|------------|
+| Ubuntu 22.04.4 LTS (amd64) | AMD 7700X        | NVIDIA RTX 4090 (24GB)        | 128GB DDR5 |
+| Ubuntu 22.04.4 LTS (amd64) | Intel i9-14900HX | NVIDIA RTX 4090 (16GB) Mobile |  64GB DDR5 |
 
 ## Development
 

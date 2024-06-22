@@ -84,7 +84,7 @@ RUN mkdir -p /workspace/models /workspace/ComfyUI/custom_nodes
 RUN pip install -r ComfyUI/requirements.txt $PIP_OPTS
 
 # Copy extra_model_paths.yaml to the container
-COPY extra_model_paths.yaml /workspace/ComfyUI/extra_model_paths.yaml
+COPY extra_model_paths.example.yaml /workspace/ComfyUI/extra_model_paths.yaml
 
 # Expose the port ComfyUI runs on
 EXPOSE 8188

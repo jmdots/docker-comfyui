@@ -68,7 +68,11 @@ RUN pip install torch torchvision torchaudio --extra-index-url https://download.
 # Install more Python packages to better support ComfyUI Manager usage.
 RUN pip install $PIP_OPTS \
     opencv-python \
-    segment-anything
+    piexif \
+    scikit-image \
+    scikit-learn \
+    segment-anything \
+    ultralytics
 
 # Clone the ComfyUI repository
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git

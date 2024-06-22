@@ -7,6 +7,9 @@ services:
     volumes:
       - ./var/models:/workspace/models
       - ./var/custom_nodes:/workspace/ComfyUI/custom_nodes
+
+      # Defaults to not mounted. See README.md
+      #- ./extra_model_paths.yaml:/workspace/ComfyUI/extra_model_paths.yaml
     deploy:
       resources:
         reservations:

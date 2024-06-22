@@ -1,0 +1,27 @@
+jmdots:
+
+  base_path: /workspace/models/index
+
+#  bisenet: bisenet
+#  checkpoints: checkpoints
+#  clip: clip
+#  clip_vision: clip_vision
+#  configs: configs
+#  controlnet: controlnet
+#  custom_nodes: custom_nodes
+#  diffusers: diffusers
+#  embeddings: embeddings
+#  gligen: gligen
+#  hypernetworks: hypernetworks
+#  inpaint: inpaint
+#  insightface: insightface
+#  instantid: instantid
+#  ipadapter: ipadapter
+#  landmarks: landmarks
+#  loras: loras
+#  photomaker: photomaker
+#  style_models: style_models
+#  unet: unet
+#  upscale_models: upscale_models
+#  vae: vae
+#  vae_approx: vae_approx

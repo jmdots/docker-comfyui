@@ -1,0 +1,24 @@
+services:
+  jmdots-comfyui:
+    image: jmdots/jmdots-comfyui
+    build: .
+    ports:
+      - "127.0.0.1:8188:8188"
+    volumes:
+      - ./var/models:/workspace/models
+      - ./var/custom_nodes:/workspace/ComfyUI/custom_nodes
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    ipc: host
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      stack:
+        soft: 67108864
+        hard: 67108864

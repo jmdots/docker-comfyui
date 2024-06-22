@@ -65,6 +65,9 @@ RUN pip uninstall -y flash-attn && pip install flash-attn $PIP_OPTS
 # Install PyTorch and CUDA (adapt this command to install the specific versions you need)
 RUN pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117 $PIP_OPTS
 
+# Install OpenCV
+RUN pip install opencv-python $PIP_OPTS
+
 # Clone the ComfyUI repository
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git
 

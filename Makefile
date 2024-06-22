@@ -11,7 +11,7 @@ VERSION ?= latest
 COMFYUI_MANAGER_REPO = https://github.com/ltdrdata/ComfyUI-Manager.git
 COMFYUI_CUSTOM_NODES_DIR = var/custom_nodes/ComfyUI-Manager
 
-.PHONY: help build rebuild up down restart stop logs ps rm shell nvidia manager
+.PHONY: help setup-permissions build rebuild up down restart stop logs ps rm shell nvidia manager
 
 # Default target
 .DEFAULT_GOAL := help
@@ -21,15 +21,17 @@ help: ## Display this help message
 	@echo "Usage: make [target]"; \
 	echo ""; \
 	echo "Available targets:"; \
-	grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2}'
+	grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sed -e 's/:/ /' | awk 'BEGIN {FS = " "}; {printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2}'
+
+# Setup permissions for non-root access
+setup-permissions: ## Setup permissions for non-root access
+	sudo chown -R $(USER):$(USER) var
 
 # Build and rebuild
-build: ## Build the Docker image
+build: setup-permissions ## Build the Docker image
 	docker build -t $(IMAGE_NAME):$(VERSION) -t $(IMAGE_NAME):$(TAG) .
 
-rebuild: ## Rebuild the Docker image and restart the containers
-	$(MAKE) build
-	$(MAKE) restart
+rebuild: build restart ## Rebuild the Docker image and restart the containers
 
 # Docker Compose operations
 up: ## Start the Docker containers
@@ -38,9 +40,7 @@ up: ## Start the Docker containers
 down: ## Stop and remove the Docker containers
 	docker-compose down --remove-orphans
 
-restart: ## Restart the Docker containers
-	$(MAKE) down
-	$(MAKE) up
+restart: down up ## Restart the Docker containers
 
 stop: ## Stop the Docker containers
 	docker-compose stop
@@ -64,7 +64,7 @@ nvidia: ## Monitor NVIDIA GPU usage
 	watch -n 1 nvidia-smi
 
 # Manager
-manager: ## Clone or update ComfyUI-Manager
+manager: setup-permissions ## Clone or update ComfyUI-Manager
 	@if [ -d $(COMFYUI_CUSTOM_NODES_DIR) ]; then \
 		echo "Updating ComfyUI-Manager..."; \
 		cd $(COMFYUI_CUSTOM_NODES_DIR) && git pull; \

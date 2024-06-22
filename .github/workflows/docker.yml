@@ -34,5 +34,5 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: |
-          jmdots/comfyui:${{ steps.extract_version.outputs.VERSION }}
-          jmdots/comfyui:latest-nvidia
+          jmdots/jmdots-comfyui:${{ steps.extract_version.outputs.VERSION }}
+          jmdots/jmdots-comfyui:latest-nvidia

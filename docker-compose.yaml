@@ -1,6 +1,6 @@
 services:
-  comfyui:
-    image: jmdots/comfyui:latest-nvidia
+  jmdots-comfyui:
+    image: jmdots/jmdots-comfyui
     build: .
     ports:
       - "127.0.0.1:8188:8188"

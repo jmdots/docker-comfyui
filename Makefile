@@ -1,6 +1,6 @@
 # Variables
-IMAGE_NAME = jmdots/comfyui
-TAG = latest-nvidia
+IMAGE_NAME = jmdots/jmdots-comfyui
+TAG = latest
 CONTAINER_NAME = jmdots-comfyui
 HOST_PORT = 8188
 CONTAINER_PORT = 8188
@@ -18,7 +18,7 @@ up:
 	docker-compose up -d
 
 down:
-	docker-compose down
+	docker-compose down --remove-orphans
 
 restart: down up
 

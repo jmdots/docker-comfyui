@@ -25,7 +25,7 @@ help: ## Display this help message
 
 # Setup permissions for non-root access
 setup-permissions: ## Setup permissions for non-root access
-	sudo chown -R $(USER):$(USER) var
+	if [ -d "var" ]; then sudo chown -R $(USER):$(USER) var; fi
 
 # Build and rebuild
 build: setup-permissions ## Build the Docker image

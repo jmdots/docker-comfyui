@@ -27,6 +27,7 @@ For more information, refer to the [Beginner's Guide to ComfyUI](https://stabled
 ### Future Goals
 
 - [ ] Provide a pre-built Docker image for NVIDIA GPUs.
+- [ ] Support running ComfyUI across multiple NVIDIA GPUs present on the host.
 - [ ] Support [Podman](https://podman.io/) container manager.
 
 ### Stretch Goals

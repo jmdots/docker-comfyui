@@ -9,31 +9,26 @@ For more information, refer to the [Beginner's Guide to ComfyUI](https://stabled
 
 ### Short-term Goals
 
-- [ ] Provide a Dockerfile for NVIDIA GPUs.
-- [ ] Support ComfyUI Manager first-install as well as existing installations already present in a host directory.
-- [ ] Support mounting a host directory containing models as a volume into the container.
+- [x] Provide a Dockerfile for NVIDIA GPUs based on the [NVIDIA PyTorch image](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch).
+- [x] Support ComfyUI Manager first-install as well as existing installations already present in a host directory.
+- [x] Support mounting a host directory containing models as a volume into the container.
   - **Note**: This models directory won't be the one used by ComfyUI Manager.
-- [ ] Provide a simple default `extra_model_paths.yaml`.
+- [x] Provide a simple default `extra_model_paths.yaml`.
   - **Note**: This file will not address ComfyUI Manager's paths.
-- [ ] Support mounting a host directory to `ComfyUI/custom_nodes` as a volume into the container.
+- [x] Support mounting a host directory to `ComfyUI/custom_nodes` as a volume into the container.
   - **Note**: This enables persistence for ComfyUI Manager.
-- [ ] Manage the entire lifecycle of the container using `make`.
-- [ ] Give ComfyUI its own [Python 3.10](https://www.python.org/downloads/release/python-3100/) pyenv virtual environment.
-  - The version is 3.10 because 3.11 and 3.12 aren't supported well by some projects, yet.
-- [ ] Support [Docker CE](https://www.docker.com/products/docker-desktop) container manager.
-- [ ] Delegate to ComfyUI Manager all of the hard things like managing models, custom nodes, etc.
-- [ ] Reach the point of zero warnings seen on container boot.
+- [x] Manage the entire lifecycle of the container using `make`.
+- [x] Bind the container's port to the host's localhost for security.
+- [x] Support [Docker CE](https://www.docker.com/products/docker-desktop) container manager.
+- [x] Delegate to ComfyUI Manager all of the hard things like managing models, custom nodes, etc.
+- [x] Reach the point of zero warnings seen on container boot.
 
 ### Future Goals
 
-- [ ] Provide a pre-built Docker image for NVIDIA GPUs.
+- [ ] Provide a pre-built Docker image that supports NVIDIA GPUs.
 - [ ] Support running ComfyUI across multiple NVIDIA GPUs present on the host.
 - [ ] Support [Podman](https://podman.io/) container manager.
-
-### Stretch Goals
-
-- [ ] Provide a Dockerfile for AMD GPUs.
-- [ ] Provide a pre-built Docker image for AMD GPUs.
+- [ ] Support AMD GPUs.
 
 ## Prerequisites
 
@@ -91,6 +86,44 @@ For more information, refer to the [Beginner's Guide to ComfyUI](https://stabled
     ```bash
     make nvidia
     ```
+
+## Development
+
+To contribute to this project, follow these steps:
+
+1. Fork the repository.
+2. Clone your fork:
+    ```bash
+    git clone https://github.com/<your-username>/docker-comfyui.git
+    cd docker-comfyui
+    ```
+3. Create a new branch for your feature or bugfix:
+    ```bash
+    git checkout -b my-feature-branch
+    ```
+4. Make your changes and commit them:
+    ```bash
+    git commit -m "Description of my changes"
+    ```
+5. Push your changes to your fork:
+    ```bash
+    git push origin my-feature-branch
+    ```
+6. Open a pull request to the main repository.
+
+## Continuous Integration (CI)
+
+This project uses GitHub Actions for CI. The workflow is set up to build and push the Docker image to Docker Hub whenever a new tag is pushed.
+
+### Setting Up GitHub Secrets
+
+To securely handle your Docker Hub credentials, add them as secrets in your GitHub repository settings:
+
+1. Go to your GitHub repository.
+2. Navigate to **Settings** > **Secrets** > **New repository secret**.
+3. Add two secrets:
+   - `DOCKER_USERNAME`: Your Docker Hub username.
+   - `DOCKER_PASSWORD`: Your Docker Hub password.
 
 ## Contributing
 

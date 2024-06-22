@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  comfyui:
+    image: comfyui:latest
+    build: .
+    ports:
+      - "127.0.0.1:8188:8188"
+    volumes:
+      - ./var/models:/workspace/models
+      - ./var/custom_nodes:/workspace/ComfyUI/custom_nodes
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]

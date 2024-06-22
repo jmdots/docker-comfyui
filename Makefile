@@ -15,33 +15,27 @@ build:
 	docker build -t $(IMAGE_NAME):$(VERSION) -t $(IMAGE_NAME):$(TAG) .
 
 up:
-	docker run --gpus all -d \
-		--name $(CONTAINER_NAME) \
-		-p $(BIND_ADDRESS):$(HOST_PORT):$(CONTAINER_PORT) \
-		-v $(VOLUME_MODELS):/workspace/models \
-		-v $(VOLUME_CUSTOM_NODES):/workspace/ComfyUI/custom_nodes \
-		$(IMAGE_NAME):$(VERSION)
+	docker-compose up -d
 
 down:
-	docker stop $(CONTAINER_NAME) && \
-	docker rm $(CONTAINER_NAME)
+	docker-compose down
 
 restart: down up
 
 logs:
-	docker logs -f $(CONTAINER_NAME)
+	docker-compose logs -f
 
 nvidia:
 	watch -n 1 nvidia-smi
 
 ps:
-	docker ps
+	docker-compose ps
 
 rm:
-	docker rm -f $(CONTAINER_NAME)
+	docker-compose rm -f
 
 shell:
-	docker exec -it $(CONTAINER_NAME) /bin/bash
+	docker-compose exec $(CONTAINER_NAME) /bin/bash
 
 stop:
-	docker stop $(CONTAINER_NAME)
+	docker-compose stop

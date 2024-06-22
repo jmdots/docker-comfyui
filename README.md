@@ -9,6 +9,8 @@ For more information, refer to the [Beginner's Guide to ComfyUI](https://stabled
 
 ### Short-term Goals
 
+- [x] Support `make` managing the container lifecycle.
+- [ ] Support `docker-compose` managing the container lifecycle.
 - [x] Provide a Dockerfile for NVIDIA GPUs based on the [NVIDIA PyTorch image](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch).
 - [x] Support ComfyUI Manager first-install as well as existing installations already present in a host directory.
 - [x] Support mounting a host directory containing models as a volume into the container.
@@ -17,7 +19,6 @@ For more information, refer to the [Beginner's Guide to ComfyUI](https://stabled
   - **Note**: This file will not address ComfyUI Manager's paths.
 - [x] Support mounting a host directory to `ComfyUI/custom_nodes` as a volume into the container.
   - **Note**: This enables persistence for ComfyUI Manager.
-- [x] Manage the entire lifecycle of the container using `make`.
 - [x] Bind the container's port to the host's localhost for security.
 - [x] Support [Docker CE](https://www.docker.com/products/docker-desktop) container manager.
 - [x] Delegate to ComfyUI Manager all of the hard things like managing models, custom nodes, etc.
@@ -28,6 +29,8 @@ For more information, refer to the [Beginner's Guide to ComfyUI](https://stabled
 - [ ] Provide a pre-built Docker image that supports NVIDIA GPUs.
 - [ ] Support running ComfyUI across multiple NVIDIA GPUs present on the host.
 - [ ] Support [Podman](https://podman.io/) container manager.
+- [ ] Support `podman-compose` managing the container lifecycle.
+- [ ] Support Kubernetes managing the container lifecycle.
 - [ ] Support AMD GPUs.
 
 ## Prerequisites

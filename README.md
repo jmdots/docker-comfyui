@@ -1,16 +1,16 @@
-# docker-comfyui
-A simple container lifecycle management solution for ComfyUI.
+# jmdots-comfyui
+
+**JMDOTS ComfyUI**
+
+A simple container lifecycle management solution for ComfyUI using `docker-compose`.
 
 ComfyUI is a revolutionary node-based graphical user interface (GUI) designed to facilitate the use of [Stable Diffusion](https://stability.ai/), a powerful platform for generating AI-driven images. Unlike traditional text-based interfaces, ComfyUI uses a visual approach where users can create and manage complex workflows through interconnected nodes. This setup allows for greater flexibility, customization, and understanding of each step involved in the image generation process.
 
 For more information, refer to the [Beginner's Guide to ComfyUI](https://stablediffusionweb.com/blog/beginners-guide-to-comfyui) and the [Definitive Guide to ComfyUI](https://openaijourney.com/comfyui-guide).
 
-## Goals
-
-### Short-term Goals
+## Features
 
 - [x] Support `make` managing the container lifecycle.
-- [ ] Support `docker-compose` managing the container lifecycle.
 - [x] Provide a Dockerfile for NVIDIA GPUs based on the [NVIDIA PyTorch image](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch).
 - [x] Support ComfyUI Manager first-install as well as existing installations already present in a host directory.
 - [x] Support mounting a host directory containing models as a volume into the container.
@@ -24,14 +24,15 @@ For more information, refer to the [Beginner's Guide to ComfyUI](https://stabled
 - [x] Delegate to ComfyUI Manager all of the hard things like managing models, custom nodes, etc.
 - [x] Reach the point of zero warnings seen on container boot.
 
-### Future Goals
+## Roadmap
 
+- [ ] Implement GitHub Actions CI for building images that push to [Docker Hub](https://hub.docker.com).
 - [ ] Provide a pre-built Docker image that supports NVIDIA GPUs.
 - [ ] Support running ComfyUI across multiple NVIDIA GPUs present on the host.
 - [ ] Support [Podman](https://podman.io/) container manager.
 - [ ] Support `podman-compose` managing the container lifecycle.
-- [ ] Support Kubernetes managing the container lifecycle.
 - [ ] Support AMD GPUs.
+- [ ] Support Kubernetes managing the container lifecycle.
 
 ## Prerequisites
 
@@ -42,18 +43,13 @@ For more information, refer to the [Beginner's Guide to ComfyUI](https://stabled
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/jmdots/docker-comfyui.git
-    cd docker-comfyui
+    git clone https://github.com/jmdots/jmdots-comfyui.git
+    cd jmdots-comfyui
     ```
 
-2. Build the Docker image:
+2. Build and start the Docker containers:
     ```bash
-    make build
-    ```
-
-3. Start the container:
-    ```bash
-    make up
+    make rebuild
     ```
 
 ## Interfaces
@@ -62,16 +58,16 @@ For more information, refer to the [Beginner's Guide to ComfyUI](https://stabled
 
 - `make build`: Build or rebuild container images
 - `make up`: Create and start enabled containers
+- `make down`: Stop and remove enabled containers, networks
 - `make restart`: Restart enabled containers
 - `make rebuild`: Rebuild container images and restart enabled containers
-- `make down`: Stop and remove enabled containers, networks
-- `make kill`: Force stop enabled containers
-- `make logs`: Watch output from enabled containers
-- `make nvidia`: Watch nvidia-smi
-- `make ps`: List enabled containers
-- `make rm`: Removes stopped service containers
-- `make shell`: Get a shell prompt in the running container
 - `make stop`: Stop services
+- `make logs`: Watch output from enabled containers
+- `make nvidia`: Watch NVIDIA GPU usage
+- `make ps`: List enabled containers
+- `make rm`: Remove stopped service containers
+- `make shell`: Get a shell prompt in the running container
+- `make manager`: Clone or update ComfyUI-Manager
 
 ## Usage Examples
 
@@ -97,8 +93,8 @@ To contribute to this project, follow these steps:
 1. Fork the repository.
 2. Clone your fork:
     ```bash
-    git clone https://github.com/<your-username>/docker-comfyui.git
-    cd docker-comfyui
+    git clone https://github.com/<your-username>/jmdots-comfyui.git
+    cd jmdots-comfyui
     ```
 3. Create a new branch for your feature or bugfix:
     ```bash
@@ -116,6 +112,8 @@ To contribute to this project, follow these steps:
 
 ## Continuous Integration (CI)
 
+**Note**: This feature is not yet active.
+
 This project uses GitHub Actions for CI. The workflow is set up to build and push the Docker image to Docker Hub whenever a new tag is pushed.
 
 ### Setting Up GitHub Secrets
@@ -130,8 +128,53 @@ To securely handle your Docker Hub credentials, add them as secrets in your GitH
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request with your improvements.
+Contributions are welcome! Please open an issue or submit a pull request with your improvements. Please ensure you understand the license sections below before contributing. Thank you!
 
 ## License
 
-This project is licensed under the [AGPLv3 License](https://www.gnu.org/licenses/agpl-3.0.html). See the [LICENSE](LICENSE) file for details.
+This project includes components licensed under the GNU General Public License (GPL) version 3.0:
+
+- [ComfyUI](https://github.com/comfyanonymous/ComfyUI/blob/master/LICENSE)
+- [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager/blob/main/LICENSE.txt)
+
+```
+========================
+jmdots-comfyui by JMDOTS
+========================
+Copyright © 2024 Joshua M. Dotson (contact@jmdots.com)
+
+JMDOTS-DUAL-LICENSE-1.2
+=======================
+https://legal.jmdots.com/licenses/
+
+Personal, Non-Commercial License
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This software is provided under the GNU Affero General Public License (AGPL)
+version 3 or later. You are free to use, modify, and distribute this
+software for personal, non-commercial use under the terms of the AGPL. If you
+modify this software and distribute it, you must also make the modified
+source code available under the same license terms. There is no warranty for
+this software, to the extent permitted by applicable law.
+
+For more details, please refer to the full text of the GNU AGPL: [GNU Affero
+General Public License](http://www.gnu.org/licenses/)
+
+Commercial License
+~~~~~~~~~~~~~~~~~
+This software is available under a Commercial License for any business,
+commercial, enterprise, or governmental use. The Commercial License allows
+you to use, modify, and distribute this software in proprietary applications
+without the requirement to disclose source code modifications or derivative
+works. Under this license, you receive additional support and maintenance
+services.
+
+For information on purchasing a commercial license, please contact us at
+[sales@jmdots.com](mailto:sales@jmdots.com) or visit our website at [JMDOTS
+GitHub](http://www.github.com/jmdots/).
+
+Limited Liability
+~~~~~~~~~~~~~~~~
+In no event shall the authors or copyright holders be liable for any claim,
+damages, or other liability arising from the use or distribution of this
+software.
+```

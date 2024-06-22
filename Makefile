@@ -4,12 +4,12 @@ TAG = latest
 CONTAINER_NAME = jmdots-comfyui
 HOST_PORT = 8188
 CONTAINER_PORT = 8188
-VOLUME_MODELS = $(pwd)/var/models
-VOLUME_CUSTOM_NODES = $(pwd)/var/custom_nodes
+VOLUME_MODELS = $(pwd)/var/ComfyUI/models
+VOLUME_CUSTOM_NODES = $(pwd)/var/ComfyUI/custom_nodes
 BIND_ADDRESS = 127.0.0.1
 VERSION ?= latest
 COMFYUI_MANAGER_REPO = https://github.com/ltdrdata/ComfyUI-Manager.git
-COMFYUI_CUSTOM_NODES_DIR = var/custom_nodes/ComfyUI-Manager
+COMFYUI_CUSTOM_NODES_DIR = var/ComfyUI/custom_nodes/ComfyUI-Manager
 
 .PHONY: help setup-permissions build rebuild up down restart stop logs ps rm shell nvidia manager
 

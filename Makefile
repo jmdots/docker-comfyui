@@ -1,15 +1,10 @@
-# Variables
-IMAGE_NAME = jmdots/jmdots-comfyui
-TAG = latest
-CONTAINER_NAME = jmdots-comfyui
-HOST_PORT = 8188
-CONTAINER_PORT = 8188
-VOLUME_MODELS = $(pwd)/var/ComfyUI/models
-VOLUME_CUSTOM_NODES = $(pwd)/var/ComfyUI/custom_nodes
-BIND_ADDRESS = 127.0.0.1
-VERSION ?= latest
-COMFYUI_MANAGER_REPO = https://github.com/ltdrdata/ComfyUI-Manager.git
-COMFYUI_CUSTOM_NODES_DIR = var/ComfyUI/custom_nodes/ComfyUI-Manager
+# Export variables from .env or .env.example
+ifneq (,$(wildcard ./.env))
+    include .env
+else ifneq (,$(wildcard ./.env.example))
+    include .env.example
+endif
+export
 
 .PHONY: help setup-permissions build rebuild up down restart stop logs ps rm shell nvidia manager
 
@@ -29,7 +24,7 @@ setup-permissions: ## Setup permissions for non-root access
 
 # Build and rebuild
 build: setup-permissions ## Build the Docker image
-	docker build -t $(IMAGE_NAME):$(VERSION) -t $(IMAGE_NAME):$(TAG) .
+	docker build -t $(COMFYUI_IMAGE_NAME):$(COMFYUI_TAG) .
 
 rebuild: build restart ## Rebuild the Docker image and restart the containers
 
@@ -57,7 +52,7 @@ rm: ## Remove the Docker containers
 
 # Shell access
 shell: ## Open a shell in the running Docker container
-	docker-compose exec $(CONTAINER_NAME) /bin/bash
+	docker-compose exec $(COMFYUI_CONTAINER_NAME) /bin/bash
 
 # NVIDIA monitoring
 nvidia: ## Monitor NVIDIA GPU usage

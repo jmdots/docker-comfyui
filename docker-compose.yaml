@@ -1,13 +1,12 @@
 services:
   jmdots-comfyui:
-    image: jmdots/jmdots-comfyui
+    image: ${COMFYUI_IMAGE_NAME}:${COMFYUI_TAG}
     build: .
     ports:
-      - "127.0.0.1:8188:8188"
+      - "${COMFYUI_BIND_ADDRESS}:${COMFYUI_HOST_PORT}:${COMFYUI_CONTAINER_PORT}"
     volumes:
-      - ./var/ComfyUI/models:/workspace/ComfyUI/models
-      - ./var/ComfyUI/custom_nodes:/workspace/ComfyUI/custom_nodes
-
+      - ${COMFYUI_VOLUME_MODELS}:/workspace/ComfyUI/models
+      - ${COMFYUI_VOLUME_CUSTOM_NODES}:/workspace/ComfyUI/custom_nodes
       # Defaults to not mounted. See README.md
       #- ./extra_model_paths.yaml:/workspace/ComfyUI/extra_model_paths.yaml
     deploy:

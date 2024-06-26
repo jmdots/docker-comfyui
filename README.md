@@ -23,6 +23,7 @@ For more information, refer to the [Beginner's Guide to ComfyUI](https://stabled
 - [x] Support [Docker CE](https://www.docker.com/products/docker-desktop) container manager.
 - [x] Delegate to ComfyUI Manager all of the hard things like managing models, custom nodes, etc.
 - [x] Reach the point of zero warnings seen on container boot.
+- [x] Use `.env` to drive git-ignored configuration.
 
 ## Roadmap
 
@@ -47,7 +48,26 @@ For more information, refer to the [Beginner's Guide to ComfyUI](https://stabled
     cd jmdots-comfyui
     ```
 
-2. Build and start the Docker containers:
+2. Create a `.env` file or copy the example:
+    ```bash
+    cp .env.example .env
+    ```
+
+3. Customize the `.env` file as needed:
+    ```env
+    COMFYUI_IMAGE_NAME=jmdots/jmdots-comfyui
+    COMFYUI_TAG=latest
+    COMFYUI_CONTAINER_NAME=jmdots-comfyui
+    COMFYUI_HOST_PORT=8188
+    COMFYUI_CONTAINER_PORT=8188
+    COMFYUI_VOLUME_MODELS=$(pwd)/var/ComfyUI/models
+    COMFYUI_VOLUME_CUSTOM_NODES=$(pwd)/var/ComfyUI/custom_nodes
+    COMFYUI_BIND_ADDRESS=127.0.0.1
+    COMFYUI_MANAGER_REPO=https://github.com/ltdrdata/ComfyUI-Manager.git
+    COMFYUI_CUSTOM_NODES_DIR=var/ComfyUI/custom_nodes/ComfyUI-Manager
+    ```
+
+4. Build and start the Docker containers:
     ```bash
     make rebuild
     ```

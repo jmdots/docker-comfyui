@@ -9,7 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
-    environment: Default
+    environment:
+      name: Default
 
     steps:
     - name: Checkout code
